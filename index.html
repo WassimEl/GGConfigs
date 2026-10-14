@@ -19,6 +19,7 @@ dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:1
 .btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:8px}
 .btn{display:inline-block;text-decoration:none;font-weight:600;border-radius:8px;padding:10px 14px;border:1px solid var(--line);color:var(--tx);font-size:14px}
 .btn.p{background:var(--acc);border-color:var(--acc);color:#fff;flex:1;text-align:center}.btn:focus-visible{outline:2px solid var(--acc2);outline-offset:2px}
+.perf{border-top:1px solid var(--line);padding-top:8px;font-size:13px}.perf b{display:block;margin-bottom:4px}.perf div{display:flex;justify-content:space-between;gap:8px}.perf small{color:var(--mut)}
 .note{color:var(--mut);font-size:13px;margin-top:16px}
 @media(max-width:600px){.choice{grid-template-columns:1fr}}
 @media(prefers-color-scheme:light){:root{color-scheme:light;--bg:#f6f5f3;--panel:#fff;--line:#dcdad6;--tx:#1c1b1a;--mut:#66635f;--acc:#6835bf;--acc2:#6835bf}.pic,.ph{background:#ece6f7}}
@@ -34,8 +35,21 @@ dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:1
 </main>
 <script>
 const TALLY="https://tally.so/r/yPWNXd";
-const CONFIGS_URL="";   // lien CSV « Publier sur le web » de l'onglet Configs
-const FALLBACK=[{"id": "ddr4-mid", "nom": "DDR4 Mid range", "prix": 1335.53, "cpu": "Ryzen 5 5600", "gpu": "RX 9060 XT 8 Go", "ram": "32 Go DDR4-3200", "stock": "1 To NVMe", "boitier": "Phanteks Eclipse G370A", "lien": "https://be.pcpartpicker.com/list/6F7dGk", "image": "", "vue3d": "", "actif": "Oui", "maj": "13/10/2026"}, {"id": "ddr4-low", "nom": "DDR4 Low range", "prix": 1182.53, "cpu": "Ryzen 5 5500", "gpu": "RX 9060 XT 8 Go", "ram": "16 Go DDR4-3200", "stock": "1 To NVMe", "boitier": "Phanteks Eclipse G370A", "lien": "https://be.pcpartpicker.com/list/7LMDQy", "image": "", "vue3d": "", "actif": "Oui", "maj": "13/10/2026"}, {"id": "ddr5-low", "nom": "DDR5 Low range", "prix": 1382.84, "cpu": "Ryzen 5 7500F", "gpu": "RX 9060 XT 8 Go", "ram": "16 Go DDR5-5600", "stock": "1 To NVMe", "boitier": "Phanteks Eclipse G370A", "lien": "https://be.pcpartpicker.com/list/FwxNYX", "image": "", "vue3d": "", "actif": "Oui", "maj": "13/10/2026"}, {"id": "ddr5-mid", "nom": "DDR5 Mid range", "prix": 1699.04, "cpu": "Ryzen 5 9600X", "gpu": "RX 9060 XT 16 Go", "ram": "32 Go DDR5-6000", "stock": "1 To NVMe", "boitier": "Phanteks Eclipse G370A", "lien": "https://be.pcpartpicker.com/list/mQXZXf", "image": "", "vue3d": "", "actif": "Oui", "maj": "13/10/2026"}, {"id": "ddr5-confo", "nom": "DDR5 Confo", "prix": 1903.14, "cpu": "Ryzen 5 9600X", "gpu": "RX 9070 16 Go", "ram": "32 Go DDR5-6000", "stock": "500 Go + 1 To NVMe", "boitier": "Phanteks Eclipse G370A", "lien": "https://be.pcpartpicker.com/list/n4rLdq", "image": "", "vue3d": "", "actif": "Oui", "maj": "13/10/2026"}];
+const CONFIGS_URL="https://docs.google.com/spreadsheets/d/e/2PACX-1vRLYTyjh-Nlraye_KopxaL3LM7EkRloiXBVaL67xtwGSfxha_HmkZTjuzrHQrUB8WQEA0w0SLGhKke8/pub?gid=1003&single=true&output=csv";   // lien CSV « Publier sur le web » de l'onglet Configs
+const FALLBACK=[{"id": "ddr4-mid", "nom": "DDR4 Mid range", "prix": 1335.53, "cpu": "Ryzen 5 5600", "gpu": "RX 9060 XT 8 Go", "ram": "32 Go", "stock": "1 To", "boitier": "Phanteks Eclipse G370A", "lien": "https://be.pcpartpicker.com/list/6F7dGk", "image": "", "vue3d": "", "actif": "Oui", "maj": "13/10/2026"}, {"id": "ddr4-low", "nom": "DDR4 Low range", "prix": 1182.53, "cpu": "Ryzen 5 5500", "gpu": "RX 9060 XT 8 Go", "ram": "16 Go", "stock": "1 To", "boitier": "Phanteks Eclipse G370A", "lien": "https://be.pcpartpicker.com/list/7LMDQy", "image": "", "vue3d": "", "actif": "Oui", "maj": "13/10/2026"}, {"id": "ddr5-low", "nom": "DDR5 Low range", "prix": 1382.84, "cpu": "Ryzen 5 7500F", "gpu": "RX 9060 XT 8 Go", "ram": "16 Go", "stock": "1 To", "boitier": "Phanteks Eclipse G370A", "lien": "https://be.pcpartpicker.com/list/FwxNYX", "image": "", "vue3d": "", "actif": "Oui", "maj": "13/10/2026"}, {"id": "ddr5-mid", "nom": "DDR5 Mid range", "prix": 1699.04, "cpu": "Ryzen 5 9600X", "gpu": "RX 9060 XT 16 Go", "ram": "32 Go", "stock": "1 To", "boitier": "Phanteks Eclipse G370A", "lien": "https://be.pcpartpicker.com/list/mQXZXf", "image": "", "vue3d": "", "actif": "Oui", "maj": "13/10/2026"}, {"id": "ddr5-confo", "nom": "DDR5 Confo", "prix": 1903.14, "cpu": "Ryzen 5 9600X", "gpu": "RX 9070 16 Go", "ram": "32 Go", "stock": "1,5 To", "boitier": "Phanteks Eclipse G370A", "lien": "https://be.pcpartpicker.com/list/n4rLdq", "image": "", "vue3d": "", "actif": "Oui", "maj": "13/10/2026"}];
+
+const FPSM={
+ games:[["Cyberpunk 2077",65,47,0.3],["Call of Duty: Warzone",111,69,0.7],["Fortnite",224,134,1]],
+ gpu:{"9060xt8":100,"9060xt16":108,"9070":120},
+ cpu:{"9600x":1.05,"7500f":1.0,"5600":0.93,"5500":0.88}
+};
+function fpsOf(g,c,ram){
+ const gi=FPSM.gpu[g],cf=FPSM.cpu[c];if(!gi||!cf)return null;
+ const rp=ram&&ram<16?0.85:1;
+ return FPSM.games.map(function(x){const k=gi/100*(1+x[3]*(cf-1))*rp;return{n:x[0],a:Math.round(x[1]*k/5)*5,b:Math.round(x[2]*k/5)*5}});
+}
+function gpuKey(s){s=String(s||"").toLowerCase().replace(/\s/g,"");if(/9070/.test(s))return"9070";if(/9060xt/.test(s))return/16/.test(s)?"9060xt16":"9060xt8";return""}
+function cpuKey(s){const m=String(s||"").toLowerCase().match(/9600x|7500f|5600|5500/);return m?m[0]:""}
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const num=v=>{const n=parseFloat(String(v||"").replace(/[^\d,.-]/g,"").replace(",","."));return isNaN(n)?0:n};
@@ -54,14 +68,18 @@ async function load(){
   return out.length?out:FALLBACK;
  }catch(e){return FALLBACK}
 }
+function perf(c){
+ const f=fpsOf(gpuKey(c.gpu),cpuKey(c.cpu),parseInt(c.ram));if(!f)return"";
+ return '<div class="perf"><b>FPS estimés (Ultra)</b>'+f.map(x=>'<div><span>'+esc(x.n)+'</span><span>~'+x.a+' <small>1080p</small> · ~'+x.b+' <small>1440p</small></span></div>').join("")+'</div>';
+}
 function card(c){
  const p=num(c.prix),url=TALLY+"?config="+encodeURIComponent(c.nom)+"&prix="+Math.round(p);
  const img=c.image?(/^https?:/i.test(c.image)?c.image:"img/"+c.image):"";
- const rows=[["Processeur",c.cpu],["Carte graphique",c.gpu],["Mémoire",c.ram],["Stockage",c.stock],["Boîtier",c.boitier]].filter(x=>x[1]);
+ const rows=[["Processeur",c.cpu],["Carte graphique",c.gpu],["Mémoire",c.ram],["Stockage",c.stock]].filter(x=>x[1]);
  const v=safeUrl(c.vue3d),l=safeUrl(c.lien);
  return '<article class="card">'+(img?'<img class="pic" src="'+esc(img)+'" alt="'+esc(c.nom)+'" loading="lazy">':'<div class="ph" aria-hidden="true">'+esc(c.nom.split(" ").slice(0,2).join(" "))+'</div>')+
  '<div class="in"><h3>'+esc(c.nom)+'</h3><div class="price">'+(p?"dès "+eur(p):"Sur devis")+' <small>montage inclus</small></div>'+
- '<dl>'+rows.map(x=>"<dt>"+esc(x[0])+"</dt><dd>"+esc(x[1])+"</dd>").join("")+'</dl>'+
+ '<dl>'+rows.map(x=>"<dt>"+esc(x[0])+"</dt><dd>"+esc(x[1])+"</dd>").join("")+'</dl>'+perf(c)+
  '<div class="btns"><a class="btn p" href="'+esc(url)+'">Je veux ce PC</a>'+(v?'<a class="btn" href="'+esc(v)+'" target="_blank" rel="noopener noreferrer">Visuel 3D</a>':"")+(l?'<a class="btn" href="'+esc(l)+'" target="_blank" rel="noopener noreferrer">Liste des pièces</a>':"")+'</div></div></article>';
 }
 $("custom").href=TALLY;
@@ -69,6 +87,6 @@ load().then(list=>{
  const act=list.filter(c=>!/^(non|no|0|faux)$/i.test(c.actif||"oui"));
  $("grid").innerHTML=act.map(card).join("")||"<p>Aucune config pour le moment : choisis le devis personnalisé.</p>";
  const d=act.map(c=>c.maj).filter(Boolean)[0];
- $("note").textContent="Prix indicatifs"+(d?" au "+d:"")+", confirmés sur ton devis. Les prix des composants varient.";
+ $("note").textContent="Prix indicatifs"+(d?" au "+d:"")+", confirmés sur ton devis. FPS estimés en Ultra sans ray tracing d'après des données publiques : à titre indicatif, ils varient selon le jeu et les réglages.";
 });
 </script></body></html>
