@@ -1,4 +1,0 @@
-GGConfigs : portail clients "Choisir une config / Devis personnalisé"
-1. Créer un dépôt GitHub public nommé GGConfigs, y mettre index.html (racine), activer Pages (Settings > Pages).
-2. Les données viennent de l'onglet "Configs" du Google Sheet : Fichier > Partager > Publier sur le web > onglet Configs > CSV, puis donner le lien à Claude.
-3. Images : créer un dossier img/ dans le dépôt, y mettre les photos (même format), et écrire le nom du fichier dans la colonne Image du Sheet.
