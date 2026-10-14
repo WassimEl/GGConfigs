@@ -10,7 +10,7 @@ h1{margin:0;font-size:24px}h2{font-size:18px;margin:28px 0 12px}.sub{color:var(-
 .big{display:block;text-decoration:none;color:var(--tx);background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
 .big b{display:block;font-size:18px;color:var(--acc2)}.big span{color:var(--mut);font-size:14px}.big:hover,.big:focus-visible{border-color:var(--acc);outline:0}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.card{background:color-mix(in srgb,var(--tint,transparent) 9%,var(--panel));border:1px solid color-mix(in srgb,var(--tint,transparent) 35%,var(--line));border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
 .pic{aspect-ratio:16/10;width:100%;object-fit:cover;display:block;background:#2a2438}
 .ph{aspect-ratio:16/10;display:grid;place-items:center;background:linear-gradient(135deg,#2a2438,#171716);color:var(--acc2);font-weight:800;font-size:26px}
 .in{padding:14px;display:flex;flex-direction:column;gap:8px;flex:1}.in h3{margin:0;font-size:18px}.price{font-size:22px;font-weight:800;color:var(--acc2)}
@@ -36,7 +36,7 @@ dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:1
 <script>
 const TALLY="https://tally.so/r/yPWNXd";
 const CONFIGS_URL="https://docs.google.com/spreadsheets/d/e/2PACX-1vRLYTyjh-Nlraye_KopxaL3LM7EkRloiXBVaL67xtwGSfxha_HmkZTjuzrHQrUB8WQEA0w0SLGhKke8/pub?gid=1003&single=true&output=csv";   // lien CSV « Publier sur le web » de l'onglet Configs
-const FALLBACK=[{"id": "ddr4-mid", "nom": "DDR4 Mid range", "prix": 1335.53, "cpu": "Ryzen 5 5600", "gpu": "RX 9060 XT 8 Go", "ram": "32 Go", "stock": "1 To", "boitier": "Phanteks Eclipse G370A", "lien": "https://be.pcpartpicker.com/list/6F7dGk", "image": "", "vue3d": "", "actif": "Oui", "maj": "13/10/2026"}, {"id": "ddr4-low", "nom": "DDR4 Low range", "prix": 1182.53, "cpu": "Ryzen 5 5500", "gpu": "RX 9060 XT 8 Go", "ram": "16 Go", "stock": "1 To", "boitier": "Phanteks Eclipse G370A", "lien": "https://be.pcpartpicker.com/list/7LMDQy", "image": "", "vue3d": "", "actif": "Oui", "maj": "13/10/2026"}, {"id": "ddr5-low", "nom": "DDR5 Low range", "prix": 1382.84, "cpu": "Ryzen 5 7500F", "gpu": "RX 9060 XT 8 Go", "ram": "16 Go", "stock": "1 To", "boitier": "Phanteks Eclipse G370A", "lien": "https://be.pcpartpicker.com/list/FwxNYX", "image": "", "vue3d": "", "actif": "Oui", "maj": "13/10/2026"}, {"id": "ddr5-mid", "nom": "DDR5 Mid range", "prix": 1699.04, "cpu": "Ryzen 5 9600X", "gpu": "RX 9060 XT 16 Go", "ram": "32 Go", "stock": "1 To", "boitier": "Phanteks Eclipse G370A", "lien": "https://be.pcpartpicker.com/list/mQXZXf", "image": "", "vue3d": "", "actif": "Oui", "maj": "13/10/2026"}, {"id": "ddr5-confo", "nom": "DDR5 Confo", "prix": 1903.14, "cpu": "Ryzen 5 9600X", "gpu": "RX 9070 16 Go", "ram": "32 Go", "stock": "1,5 To", "boitier": "Phanteks Eclipse G370A", "lien": "https://be.pcpartpicker.com/list/n4rLdq", "image": "", "vue3d": "", "actif": "Oui", "maj": "13/10/2026"}];
+const FALLBACK=[{"id": "ddr4-mid", "nom": "DDR4 Mid range", "prix": 1335.53, "cpu": "Ryzen 5 5600", "gpu": "RX 9060 XT 8 Go", "ram": "32 Go", "stock": "1 To", "boitier": "Phanteks Eclipse G370A", "lien": "https://be.pcpartpicker.com/list/6F7dGk", "image": "boitier.jpg", "vue3d": "", "actif": "Oui", "maj": "13/10/2026"}, {"id": "ddr4-low", "nom": "DDR4 Low range", "prix": 1182.53, "cpu": "Ryzen 5 5500", "gpu": "RX 9060 XT 8 Go", "ram": "16 Go", "stock": "1 To", "boitier": "Phanteks Eclipse G370A", "lien": "https://be.pcpartpicker.com/list/7LMDQy", "image": "boitier.jpg", "vue3d": "", "actif": "Oui", "maj": "13/10/2026"}, {"id": "ddr5-low", "nom": "DDR5 Low range", "prix": 1382.84, "cpu": "Ryzen 5 7500F", "gpu": "RX 9060 XT 8 Go", "ram": "16 Go", "stock": "1 To", "boitier": "Phanteks Eclipse G370A", "lien": "https://be.pcpartpicker.com/list/FwxNYX", "image": "boitier.jpg", "vue3d": "", "actif": "Oui", "maj": "13/10/2026"}, {"id": "ddr5-mid", "nom": "DDR5 Mid range", "prix": 1699.04, "cpu": "Ryzen 5 9600X", "gpu": "RX 9060 XT 16 Go", "ram": "32 Go", "stock": "1 To", "boitier": "Phanteks Eclipse G370A", "lien": "https://be.pcpartpicker.com/list/mQXZXf", "image": "boitier.jpg", "vue3d": "", "actif": "Oui", "maj": "13/10/2026"}, {"id": "ddr5-confo", "nom": "DDR5 Confo", "prix": 1903.14, "cpu": "Ryzen 5 9600X", "gpu": "RX 9070 16 Go", "ram": "32 Go", "stock": "1,5 To", "boitier": "Phanteks Eclipse G370A", "lien": "https://be.pcpartpicker.com/list/n4rLdq", "image": "boitier.jpg", "vue3d": "", "actif": "Oui", "maj": "13/10/2026"}];
 
 const FPSM={
  games:[["Cyberpunk 2077",65,47,0.3],["Call of Duty: Warzone",111,69,0.7],["Fortnite",224,134,1]],
@@ -50,6 +50,8 @@ function fpsOf(g,c,ram){
 }
 function gpuKey(s){s=String(s||"").toLowerCase().replace(/\s/g,"");if(/9070/.test(s))return"9070";if(/9060xt/.test(s))return/16/.test(s)?"9060xt16":"9060xt8";return""}
 function cpuKey(s){const m=String(s||"").toLowerCase().match(/9600x|7500f|5600|5500/);return m?m[0]:""}
+const BASE=(()=>{let p=location.pathname;p=/\.[a-z0-9]+$/i.test(p)?p.replace(/[^/]*$/,""):(p.endsWith("/")?p:p+"/");return location.origin+p})();
+function imgFail(i){const d=document.createElement("div");d.className="ph";d.textContent=i.alt.split(" ").slice(0,2).join(" ");i.replaceWith(d)}
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const num=v=>{const n=parseFloat(String(v||"").replace(/[^\d,.-]/g,"").replace(",","."));return isNaN(n)?0:n};
@@ -72,20 +74,21 @@ function perf(c){
  const f=fpsOf(gpuKey(c.gpu),cpuKey(c.cpu),parseInt(c.ram));if(!f)return"";
  return '<div class="perf"><b>FPS estimés (Ultra)</b>'+f.map(x=>'<div><span>'+esc(x.n)+'</span><span>~'+x.a+' <small>1080p</small> · ~'+x.b+' <small>1440p</small></span></div>').join("")+'</div>';
 }
-function card(c){
+function card(c,i,n){
  const p=num(c.prix),url=TALLY+"?config="+encodeURIComponent(c.nom)+"&prix="+Math.round(p);
- const img=c.image?(/^https?:/i.test(c.image)?c.image:"img/"+c.image):"";
+ const img=c.image?(/^https?:/i.test(c.image)?c.image:BASE+"img/"+c.image):"";
  const rows=[["Processeur",c.cpu],["Carte graphique",c.gpu],["Mémoire",c.ram],["Stockage",c.stock]].filter(x=>x[1]);
  const v=safeUrl(c.vue3d),l=safeUrl(c.lien);
- return '<article class="card">'+(img?'<img class="pic" src="'+esc(img)+'" alt="'+esc(c.nom)+'" loading="lazy">':'<div class="ph" aria-hidden="true">'+esc(c.nom.split(" ").slice(0,2).join(" "))+'</div>')+
+ const hue=n>1?Math.round(150+i/(n-1)*160):200;
+ return '<article class="card" style="--tint:hsl('+hue+' 70% 55%)">'+(img?'<img class="pic" src="'+esc(img)+'" alt="'+esc(c.nom)+'" loading="lazy" onerror="imgFail(this)">':'<div class="ph" aria-hidden="true">'+esc(c.nom.split(" ").slice(0,2).join(" "))+'</div>')+
  '<div class="in"><h3>'+esc(c.nom)+'</h3><div class="price">'+(p?"dès "+eur(p):"Sur devis")+' <small>montage inclus</small></div>'+
  '<dl>'+rows.map(x=>"<dt>"+esc(x[0])+"</dt><dd>"+esc(x[1])+"</dd>").join("")+'</dl>'+perf(c)+
  '<div class="btns"><a class="btn p" href="'+esc(url)+'">Je veux ce PC</a>'+(v?'<a class="btn" href="'+esc(v)+'" target="_blank" rel="noopener noreferrer">Visuel 3D</a>':"")+(l?'<a class="btn" href="'+esc(l)+'" target="_blank" rel="noopener noreferrer">Liste des pièces</a>':"")+'</div></div></article>';
 }
 $("custom").href=TALLY;
 load().then(list=>{
- const act=list.filter(c=>!/^(non|no|0|faux)$/i.test(c.actif||"oui"));
- $("grid").innerHTML=act.map(card).join("")||"<p>Aucune config pour le moment : choisis le devis personnalisé.</p>";
+ const act=list.filter(c=>!/^(non|no|0|faux)$/i.test(c.actif||"oui")).sort((a,b)=>(num(a.prix)||1e9)-(num(b.prix)||1e9));
+ $("grid").innerHTML=act.map((c,i)=>card(c,i,act.length)).join("")||"<p>Aucune config pour le moment : choisis le devis personnalisé.</p>";
  const d=act.map(c=>c.maj).filter(Boolean)[0];
  $("note").textContent="Prix indicatifs"+(d?" au "+d:"")+", confirmés sur ton devis. FPS estimés en Ultra sans ray tracing d'après des données publiques : à titre indicatif, ils varient selon le jeu et les réglages.";
 });
