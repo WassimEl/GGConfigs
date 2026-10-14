@@ -20,6 +20,10 @@ dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:1
 .btn{display:inline-block;text-decoration:none;font-weight:600;border-radius:8px;padding:10px 14px;border:1px solid var(--line);color:var(--tx);font-size:14px}
 .btn.p{background:var(--acc);border-color:var(--acc);color:#fff;flex:1;text-align:center}.btn:focus-visible{outline:2px solid var(--acc2);outline-offset:2px}
 .perf{border-top:1px solid var(--line);padding-top:8px;font-size:13px}.perf b{display:block;margin-bottom:4px}.perf div{display:flex;justify-content:space-between;gap:8px}.perf small{color:var(--mut)}
+.dlg{width:min(1000px,96vw);height:min(720px,90vh);padding:0;border:1px solid var(--line);border-radius:14px;background:var(--panel);color:var(--tx)}
+.dlg::backdrop{background:rgba(0,0,0,.65)}.dlg[open]{display:flex;flex-direction:column}
+.dh{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line)}.dh b{flex:1}
+.dlg iframe{flex:1;width:100%;border:0;background:#fff}.dl{padding:8px 14px;font-size:13px;color:var(--mut);border-top:1px solid var(--line)}.dl a{color:var(--acc2)}
 .note{color:var(--mut);font-size:13px;margin-top:16px}
 @media(max-width:600px){.choice{grid-template-columns:1fr}}
 @media(prefers-color-scheme:light){:root{color-scheme:light;--bg:#f6f5f3;--panel:#fff;--line:#dcdad6;--tx:#1c1b1a;--mut:#66635f;--acc:#6835bf;--acc2:#6835bf}.pic,.ph{background:#ece6f7}}
@@ -33,6 +37,7 @@ dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:1
 <div class="grid" id="grid" aria-live="polite"></div>
 <p class="note" id="note"></p>
 </main>
+<dialog class="dlg" id="d3" aria-label="Visuel 3D"><div class="dh"><b id="d3t">Visuel 3D</b><a class="btn" id="d3o" href="#" target="_blank" rel="noopener noreferrer">Ouvrir dans un nouvel onglet</a><button class="btn" id="d3c" type="button">Fermer</button></div><iframe id="d3f" title="Visuel 3D de la config" allow="fullscreen" referrerpolicy="no-referrer" sandbox="allow-scripts allow-same-origin allow-popups allow-forms"></iframe><div class="dl">Si rien ne s'affiche, ouvre le visuel dans un nouvel onglet avec le bouton ci-dessus.</div></dialog>
 <script>
 const TALLY="https://tally.so/r/yPWNXd";
 const CONFIGS_URL="https://docs.google.com/spreadsheets/d/e/2PACX-1vRLYTyjh-Nlraye_KopxaL3LM7EkRloiXBVaL67xtwGSfxha_HmkZTjuzrHQrUB8WQEA0w0SLGhKke8/pub?gid=1003&single=true&output=csv";   // lien CSV « Publier sur le web » de l'onglet Configs
@@ -78,15 +83,19 @@ function perf(c){
 function card(c,i,n){
  const p=num(c.prix),url=TALLY+"?config="+encodeURIComponent(c.nom)+"&prix="+Math.round(p);
  const img=c.image?(/^https?:/i.test(c.image)?c.image:BASE+"img/"+c.image+"?v="+Math.floor(Date.now()/36e5)):"";
- const rows=[["Processeur",c.cpu],["Carte graphique",c.gpu],["Mémoire",c.ram],["Stockage",c.stock]].filter(x=>x[1]);
  const v=safeUrl(c.vue3d),l=safeUrl(c.lien);
  const hue=n>1?Math.round(150+i/(n-1)*160):200;
  return '<article class="card" style="--tint:hsl('+hue+' 70% 55%)">'+(img?'<img class="pic" src="'+esc(img)+'" alt="'+esc(c.nom)+'" loading="lazy" onerror="imgFail(this)">':'<div class="ph" aria-hidden="true">'+esc(c.nom.split(" ").slice(0,2).join(" "))+'</div>')+
  '<div class="in"><h3>'+esc(c.nom)+'</h3><div class="price">'+(p?"dès "+eur(p):"Sur devis")+' <small>montage inclus</small></div>'+
- '<dl>'+rows.map(x=>"<dt>"+esc(x[0])+"</dt><dd>"+esc(x[1])+"</dd>").join("")+'</dl>'+perf(c)+
- '<div class="btns"><a class="btn p" href="'+esc(url)+'">Je veux ce PC</a>'+(v?'<a class="btn" href="'+esc(v)+'" target="_blank" rel="noopener noreferrer">Visuel 3D</a>':"")+(l?'<a class="btn" href="'+esc(l)+'" target="_blank" rel="noopener noreferrer">Liste des pièces</a>':"")+'</div></div></article>';
+ perf(c)+
+ '<div class="btns"><a class="btn p" href="'+esc(url)+'">Je veux ce PC</a>'+(v?'<a class="btn v3d" href="'+esc(v)+'" data-n="'+esc(c.nom)+'" target="_blank" rel="noopener noreferrer">Visuel 3D</a>':"")+(l?'<a class="btn" href="'+esc(l)+'" target="_blank" rel="noopener noreferrer">Liste des pièces</a>':"")+'</div></div></article>';
 }
 $("custom").href=TALLY;
+const d3=$("d3");
+$("grid").addEventListener("click",e=>{const a=e.target.closest("a.v3d");if(!a||!d3.showModal)return;e.preventDefault();$("d3t").textContent="Visuel 3D : "+a.dataset.n;$("d3o").href=a.href;$("d3f").src=a.href;d3.showModal()});
+const d3close=()=>{d3.close();$("d3f").src="about:blank"};
+$("d3c").onclick=d3close;d3.addEventListener("cancel",()=>{$("d3f").src="about:blank"});
+d3.addEventListener("click",e=>{if(e.target===d3)d3close()});
 load().then(list=>{
  const act=list.filter(c=>!/^(non|no|0|faux)$/i.test(c.actif||"oui")).sort((a,b)=>(num(a.prix)||1e9)-(num(b.prix)||1e9));
  $("grid").innerHTML=act.map((c,i)=>card(c,i,act.length)).join("")||"<p>Aucune config pour le moment : choisis le devis personnalisé.</p>";
