@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GGBUILD – Choisis ton PC</title><link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABABAMAAABYR2ztAAAAMFBMVEWOXfyKWfWJWfWJWfSJWfOIWfKHWPBiQqsyIlkbGSEYFxsYFxcXFxcUFxcWFxMTFA4xv5x1AAADnUlEQVR42u2UbWiVZRjHf9ezR1db+txn5QYuPc8mRsjOi5umFNGSIpe0qaDUVNyW6aI+hIFbEn6QyEQmVvRiYirKFhwTU9mCoGZQaJ3Z2SiMidvjWYdM2s79+Froee4+7GjSh74XXl8uLvjBzfW///9Lkvx7WdwB/jOAne+BB1CZn4YApOI2YOjJuYAZPQcQpJcBZG+kbwHpZTt1FgmFWnoVQaZ+p84SktJFaZAkkH2s48zHULCmwmpKM1K36cJeeGCpKpumkCQEMz/YeN8CZUYPtcYnRqnauH3KEjjzzavO+gEkCSPnX3xhzAOpSHTcaM4c29x0CrDu7/a7JrmSJIi1ZYYNgIndFWvJFbWkAJCqWK4WSXLxt9WR/HoFA7rn+JVT+SkSLnres8A/ueI2YereG/qHUEHd8igQygIG70s0iKP/BsQAVB+svtfRxQ8d/qPew6o6Gq80WkfEQ5Ij/UfB+n7tF8OI83ru9CWPad0rvxpGJvqdUSQ5cvyXYXILFWSzUuGuimL1bwaT1SVqjYdNuTZYP57oasLsQhoEyp+izcj1PUzodZHvYq1pHQnfvf7YEuB6bnJUBt69+siEuFb8EE1hYw5E0bPsww3tgEwGS1Z32ic/AUK9kZANgtXdenrC7q1A4SaHQFLPeD/vAF5z4ufGv1tqf2VwLUaf8XV4UnOqOvL+Wq3Y7ndNswEEjGLUg5KsgwIMfUB039VJFoAB0ZS44B900YBQqaD8as4dN63RGrXrEEglXNqjtN+YSIEiwAZD8PR++3r7NbPbNYBlFneG5pVdSOu87cMKLv+5tGdL/CIYCJx9uvjZ+Y4LGNcS/1FF5q34Ow3+YD3BnDTm4VTRFVPne4Bgy7fORYLnDrvbgrcXgOjpZLrX68HcgejNZCkFP304dHbrZQ9kJQSLOobOboyO72ehSo9AsDyRuPaSi/WZE4eRVYnEutjNbBY3+8DZOXNRClAaTP8TteM+EiywVrjA2LjJzIajAENGDQDgWVjdYSEvOObxI40xACW3nqC87dPZwKx1CNOneJUHFBT0KuNCzsYC68Qru2tqZndOLdw3gwrZ0DhQUzP1fNj5ekbXy+LZwD1b7G1Im2n5vaNwodMzj4+YuPncFr23fccazwak540SjSrLvDkFv9mrlTKEZZ/Pf5BSbzz+QWYxJhVNFcQNfTI2V2H8vskzVTbIAwQeErYIPCwXxjQhx2JMU5k/IHdu9f8E+AvzEGvOU56SnQAAAABJRU5ErkJggg==">
+<style>
+:root{color-scheme:dark;--bg:#171716;--panel:#1F1F1E;--line:#363635;--tx:#EDEDEC;--mut:#A3A3A0;--acc:#7C4DE8;--acc2:#B9A0FA}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding:24px 16px 48px}
+main{max-width:1000px;margin:0 auto}.brand{display:flex;align-items:center;gap:12px;margin-bottom:18px}.brand img{width:44px;height:44px;border-radius:10px}
+h1{margin:0;font-size:24px}h2{font-size:18px;margin:28px 0 12px}.sub{color:var(--mut);margin:0}
+.choice{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.big{display:block;text-decoration:none;color:var(--tx);background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
+.big b{display:block;font-size:18px;color:var(--acc2)}.big span{color:var(--mut);font-size:14px}.big:hover,.big:focus-visible{border-color:var(--acc);outline:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.pic{aspect-ratio:16/10;width:100%;object-fit:cover;display:block;background:#2a2438}
+.ph{aspect-ratio:16/10;display:grid;place-items:center;background:linear-gradient(135deg,#2a2438,#171716);color:var(--acc2);font-weight:800;font-size:26px}
+.in{padding:14px;display:flex;flex-direction:column;gap:8px;flex:1}.in h3{margin:0;font-size:18px}.price{font-size:22px;font-weight:800;color:var(--acc2)}
+.price small{font-size:12px;font-weight:500;color:var(--mut)}
+dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:14px}dt{color:var(--mut)}dd{margin:0}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:8px}
+.btn{display:inline-block;text-decoration:none;font-weight:600;border-radius:8px;padding:10px 14px;border:1px solid var(--line);color:var(--tx);font-size:14px}
+.btn.p{background:var(--acc);border-color:var(--acc);color:#fff;flex:1;text-align:center}.btn:focus-visible{outline:2px solid var(--acc2);outline-offset:2px}
+.note{color:var(--mut);font-size:13px;margin-top:16px}
+@media(max-width:600px){.choice{grid-template-columns:1fr}}
+@media(prefers-color-scheme:light){:root{color-scheme:light;--bg:#f6f5f3;--panel:#fff;--line:#dcdad6;--tx:#1c1b1a;--mut:#66635f;--acc:#6835bf;--acc2:#6835bf}.pic,.ph{background:#ece6f7}}
+</style></head><body><main>
+<div class="brand"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABABAMAAABYR2ztAAAAMFBMVEWOXfyKWfWJWfWJWfSJWfOIWfKHWPBiQqsyIlkbGSEYFxsYFxcXFxcUFxcWFxMTFA4xv5x1AAADnUlEQVR42u2UbWiVZRjHf9ezR1db+txn5QYuPc8mRsjOi5umFNGSIpe0qaDUVNyW6aI+hIFbEn6QyEQmVvRiYirKFhwTU9mCoGZQaJ3Z2SiMidvjWYdM2s79+Froee4+7GjSh74XXl8uLvjBzfW///9Lkvx7WdwB/jOAne+BB1CZn4YApOI2YOjJuYAZPQcQpJcBZG+kbwHpZTt1FgmFWnoVQaZ+p84SktJFaZAkkH2s48zHULCmwmpKM1K36cJeeGCpKpumkCQEMz/YeN8CZUYPtcYnRqnauH3KEjjzzavO+gEkCSPnX3xhzAOpSHTcaM4c29x0CrDu7/a7JrmSJIi1ZYYNgIndFWvJFbWkAJCqWK4WSXLxt9WR/HoFA7rn+JVT+SkSLnres8A/ueI2YereG/qHUEHd8igQygIG70s0iKP/BsQAVB+svtfRxQ8d/qPew6o6Gq80WkfEQ5Ij/UfB+n7tF8OI83ru9CWPad0rvxpGJvqdUSQ5cvyXYXILFWSzUuGuimL1bwaT1SVqjYdNuTZYP57oasLsQhoEyp+izcj1PUzodZHvYq1pHQnfvf7YEuB6bnJUBt69+siEuFb8EE1hYw5E0bPsww3tgEwGS1Z32ic/AUK9kZANgtXdenrC7q1A4SaHQFLPeD/vAF5z4ufGv1tqf2VwLUaf8XV4UnOqOvL+Wq3Y7ndNswEEjGLUg5KsgwIMfUB039VJFoAB0ZS44B900YBQqaD8as4dN63RGrXrEEglXNqjtN+YSIEiwAZD8PR++3r7NbPbNYBlFneG5pVdSOu87cMKLv+5tGdL/CIYCJx9uvjZ+Y4LGNcS/1FF5q34Ow3+YD3BnDTm4VTRFVPne4Bgy7fORYLnDrvbgrcXgOjpZLrX68HcgejNZCkFP304dHbrZQ9kJQSLOobOboyO72ehSo9AsDyRuPaSi/WZE4eRVYnEutjNbBY3+8DZOXNRClAaTP8TteM+EiywVrjA2LjJzIajAENGDQDgWVjdYSEvOObxI40xACW3nqC87dPZwKx1CNOneJUHFBT0KuNCzsYC68Qru2tqZndOLdw3gwrZ0DhQUzP1fNj5ekbXy+LZwD1b7G1Im2n5vaNwodMzj4+YuPncFr23fccazwak540SjSrLvDkFv9mrlTKEZZ/Pf5BSbzz+QWYxJhVNFcQNfTI2V2H8vskzVTbIAwQeErYIPCwXxjQhx2JMU5k/IHdu9f8E+AvzEGvOU56SnQAAAABJRU5ErkJggg==" alt="GGBUILD"><div><h1>GGBUILD</h1><p class="sub">Choisis ton PC sur mesure</p></div></div>
+<div class="choice">
+<a class="big" href="#configs"><b>Choisir une config</b><span>PC prêts à commander, on remplit le devis pour toi.</span></a>
+<a class="big" id="custom" href="#"><b>Devis personnalisé</b><span>Tu décris ton besoin, je te propose un PC adapté.</span></a>
+</div>
+<h2 id="configs">Nos configs</h2>
+<div class="grid" id="grid" aria-live="polite"></div>
+<p class="note" id="note"></p>
+</main>
+<script>
+const TALLY="https://tally.so/r/yPWNXd";
+const CONFIGS_URL="";   // lien CSV « Publier sur le web » de l'onglet Configs
+const FALLBACK=[{"id": "ddr4-mid", "nom": "DDR4 Mid range", "prix": 1335.53, "cpu": "Ryzen 5 5600", "gpu": "RX 9060 XT 8 Go", "ram": "32 Go DDR4-3200", "stock": "1 To NVMe", "boitier": "Phanteks Eclipse G370A", "lien": "https://be.pcpartpicker.com/list/6F7dGk", "image": "", "vue3d": "", "actif": "Oui", "maj": "13/10/2026"}, {"id": "ddr4-low", "nom": "DDR4 Low range", "prix": 1182.53, "cpu": "Ryzen 5 5500", "gpu": "RX 9060 XT 8 Go", "ram": "16 Go DDR4-3200", "stock": "1 To NVMe", "boitier": "Phanteks Eclipse G370A", "lien": "https://be.pcpartpicker.com/list/7LMDQy", "image": "", "vue3d": "", "actif": "Oui", "maj": "13/10/2026"}, {"id": "ddr5-low", "nom": "DDR5 Low range", "prix": 1382.84, "cpu": "Ryzen 5 7500F", "gpu": "RX 9060 XT 8 Go", "ram": "16 Go DDR5-5600", "stock": "1 To NVMe", "boitier": "Phanteks Eclipse G370A", "lien": "https://be.pcpartpicker.com/list/FwxNYX", "image": "", "vue3d": "", "actif": "Oui", "maj": "13/10/2026"}, {"id": "ddr5-mid", "nom": "DDR5 Mid range", "prix": 1699.04, "cpu": "Ryzen 5 9600X", "gpu": "RX 9060 XT 16 Go", "ram": "32 Go DDR5-6000", "stock": "1 To NVMe", "boitier": "Phanteks Eclipse G370A", "lien": "https://be.pcpartpicker.com/list/mQXZXf", "image": "", "vue3d": "", "actif": "Oui", "maj": "13/10/2026"}, {"id": "ddr5-confo", "nom": "DDR5 Confo", "prix": 1903.14, "cpu": "Ryzen 5 9600X", "gpu": "RX 9070 16 Go", "ram": "32 Go DDR5-6000", "stock": "500 Go + 1 To NVMe", "boitier": "Phanteks Eclipse G370A", "lien": "https://be.pcpartpicker.com/list/n4rLdq", "image": "", "vue3d": "", "actif": "Oui", "maj": "13/10/2026"}];
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const num=v=>{const n=parseFloat(String(v||"").replace(/[^\d,.-]/g,"").replace(",","."));return isNaN(n)?0:n};
+const eur=n=>n.toLocaleString("fr-BE",{minimumFractionDigits:2,maximumFractionDigits:2})+" €";
+const safeUrl=u=>/^https?:\/\//i.test(u||"")?u:"";
+function csv(t){const r=[];let row=[],f="",q=false;for(let i=0;i<t.length;i++){const c=t[i];if(q){if(c=='"'){if(t[i+1]=='"'){f+='"';i++}else q=false}else f+=c}else if(c=='"')q=true;else if(c==","){row.push(f);f=""}else if(c=="\n"){row.push(f);r.push(row);row=[];f=""}else if(c!="\r")f+=c}if(f||row.length){row.push(f);r.push(row)}return r}
+const norm=s=>String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim();
+async function load(){
+ if(!CONFIGS_URL)return FALLBACK;
+ try{
+  const r=await fetch(CONFIGS_URL+(CONFIGS_URL.includes("?")?"&":"?")+"t="+Date.now());if(!r.ok)throw 0;
+  const rows=csv(await r.text()),h=rows.shift().map(norm);
+  const ix=k=>h.findIndex(x=>x.startsWith(k));
+  const m={id:ix("id"),nom:ix("nom"),prix:ix("prix"),cpu:ix("processeur"),gpu:ix("carte graphique"),ram:ix("memoire"),stock:ix("stockage"),boitier:ix("boitier"),lien:ix("lien pcpartpicker"),image:ix("image"),vue3d:ix("lien 3d"),actif:ix("actif"),maj:ix("mis a jour")};
+  const out=rows.map(r=>{const o={};for(const k in m)o[k]=m[k]>=0?(r[m[k]]||"").trim():"";return o}).filter(o=>o.nom);
+  return out.length?out:FALLBACK;
+ }catch(e){return FALLBACK}
+}
+function card(c){
+ const p=num(c.prix),url=TALLY+"?config="+encodeURIComponent(c.nom)+"&prix="+Math.round(p);
+ const img=c.image?(/^https?:/i.test(c.image)?c.image:"img/"+c.image):"";
+ const rows=[["Processeur",c.cpu],["Carte graphique",c.gpu],["Mémoire",c.ram],["Stockage",c.stock],["Boîtier",c.boitier]].filter(x=>x[1]);
+ const v=safeUrl(c.vue3d),l=safeUrl(c.lien);
+ return '<article class="card">'+(img?'<img class="pic" src="'+esc(img)+'" alt="'+esc(c.nom)+'" loading="lazy">':'<div class="ph" aria-hidden="true">'+esc(c.nom.split(" ").slice(0,2).join(" "))+'</div>')+
+ '<div class="in"><h3>'+esc(c.nom)+'</h3><div class="price">'+(p?"dès "+eur(p):"Sur devis")+' <small>montage inclus</small></div>'+
+ '<dl>'+rows.map(x=>"<dt>"+esc(x[0])+"</dt><dd>"+esc(x[1])+"</dd>").join("")+'</dl>'+
+ '<div class="btns"><a class="btn p" href="'+esc(url)+'">Je veux ce PC</a>'+(v?'<a class="btn" href="'+esc(v)+'" target="_blank" rel="noopener noreferrer">Visuel 3D</a>':"")+(l?'<a class="btn" href="'+esc(l)+'" target="_blank" rel="noopener noreferrer">Liste des pièces</a>':"")+'</div></div></article>';
+}
+$("custom").href=TALLY;
+load().then(list=>{
+ const act=list.filter(c=>!/^(non|no|0|faux)$/i.test(c.actif||"oui"));
+ $("grid").innerHTML=act.map(card).join("")||"<p>Aucune config pour le moment : choisis le devis personnalisé.</p>";
+ const d=act.map(c=>c.maj).filter(Boolean)[0];
+ $("note").textContent="Prix indicatifs"+(d?" au "+d:"")+", confirmés sur ton devis. Les prix des composants varient.";
+});
+</script></body></html>
